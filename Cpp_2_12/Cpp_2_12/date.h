@@ -10,8 +10,8 @@ public:
 	Date(int year = 1, int month = 1, int day = 1);
 	void print();
 	Date& operator+=(int day);
-	
-	
+	Date& operator-=(int day);
+	Date operator-(int day);
 	Date operator+(int day);
 	
 private:
