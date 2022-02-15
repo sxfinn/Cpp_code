@@ -84,3 +84,15 @@ Date Date::operator-(int day)
 	tmp -= day;
 	return tmp;
 }
+
+Date& Date::operator++()
+{
+	(*this) += 1;
+	return *this;
+}
+Date Date::operator++(int)
+{
+	Date tmp(*this);
+	(*this) += 1;
+	return tmp;
+}

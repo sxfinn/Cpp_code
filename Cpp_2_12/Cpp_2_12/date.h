@@ -13,7 +13,8 @@ public:
 	Date& operator-=(int day);
 	Date operator-(int day);
 	Date operator+(int day);
-	
+	Date& operator++();
+	Date operator++(int);
 private:
 	int _year;
 	int _month;
