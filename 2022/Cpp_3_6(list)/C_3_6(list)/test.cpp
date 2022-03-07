@@ -26,12 +26,12 @@ namespace sx
 		list_node<T>* _next;
 		list_node<T>* _prev;
 	};
-	template<class T>
+	template<class T,class Ref, class Ptr>
 	class list_iterator
 	{
 	public:
 		typedef list_node<T> node;
-		typedef list_iterator<T> self;
+		typedef list_iterator<T,Ref,Ptr> self;
 
 		list_iterator(node* pnode = nullptr)
 		{
@@ -41,11 +41,11 @@ namespace sx
 			:
 			_pnode(s._pnode)
 		{}
-		T& operator*()
+		Ref operator*()
 		{
 			return _pnode->_data;
 		}
-		T* operator->()
+		node* operator->()
 		{
 			return &(_pnode->_data);
 		}
@@ -87,7 +87,8 @@ namespace sx
 	{
 	public:
 		typedef list_node<T> node;
-		typedef list_iterator<T> iterator;
+		typedef list_iterator<T,T&,T*> iterator;
+		typedef list_iterator<T, const T&, const T*> const_iterator;
 		list()		
 			:
 			_head(new node)
@@ -97,9 +98,25 @@ namespace sx
 		}
 		list(list<T>& l)
 		{
-
+			_head = new node;
+			_head->_next = _head;
+			_head->_prev = _head;
+			list<T>tmp;
+			iterator it = l.begin();
+			while (it != l.end())//ÏÖ´úÐ´·¨
+			{				
+				tmp.push_back(*it);
+				++it;
+			}
+			::swap(_head, tmp._head);
+			/*while (it != l.end())
+			{
+				push_back(*it);
+				++it;
+			}*/
+			
 		}
-		void push_back(T data)
+		void push_back(const T data)
 		{
 			node* n = new node(data);
 			node* tail = _head->_prev;
@@ -116,10 +133,66 @@ namespace sx
 		{
 			return iterator(_head);
 		}
+		const_iterator cbegin()
+		{
+			return const_iterator(_head->_next);
+		}
+		const_iterator cend()
+		{
+			return const_iterator(_head);
+		}
+		void insert(iterator pos, const T data)
+		{
+			node* cur = pos._pnode;
+			node* prev = cur->_prev;
+			node* newnode = new node(data);
+			newnode->_next = cur;
+			newnode->_prev = prev;
+			prev->_next = newnode;
+			cur->_prev = newnode;
+		}
+		iterator erase(iterator pos)
+		{
+			node* cur = pos._pnode;
+			node* next = cur->_next;
+			node* prev = cur->_prev;
+			next->_next = next;
+			next->_prev = prev;
+			return iterator(next);
+		}
+		void pop_back()
+		{
+			node* cur = _head->_prev;
+			if (cur == _head)
+				return;
+			node* prev = cur->_prev;
+			prev->_next = _head;
+			_head->_prev = prev;
+		}
 	private:
 		node* _head;
 
 	};
+}
+void test3()
+{
+	sx::list<int> l1;
+	l1.push_back(1);
+	l1.push_back(2);
+	l1.insert(l1.begin(), 2);
+	sx::list<int> l2(l1);
+	sx::list<int>::const_iterator it = l1.cbegin();
+	while (it != l1.cend())
+	{
+		cout << *it << " ";
+		++it;
+	}
+	cout << endl;
+	l2.pop_back();
+	for (auto e : l2)
+	{
+		cout << e << " ";
+	}
 }
 void test2()
 {
@@ -128,6 +201,7 @@ void test2()
 	{
 		l1.push_back(i);
 	}
+	
 	for (auto& e : l1)
 	{
 		e += 1;
@@ -145,15 +219,22 @@ void test1()
 		cout << e << " ";
 	}
 }
-typedef int i;
+//typedef int i;
+
 int main()
 {
-	
-	
+
+	test3();
 	//test1();
-	test2();
+	//test2();
 	return 0;
 }
+//class S
+//{
+//public:
+//	typedef int* point;
+//	int a;
+//};
 //struct S
 //{
 //	S(int data)
