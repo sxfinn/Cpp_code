@@ -116,6 +116,12 @@ namespace sx
 			}*/
 			
 		}
+		~list()
+		{
+			clear();
+			delete _head;
+			_head = nullptr;
+		}
 		void push_back(const T data)
 		{
 			node* n = new node(data);
@@ -156,7 +162,9 @@ namespace sx
 			node* cur = pos._pnode;
 			node* next = cur->_next;
 			node* prev = cur->_prev;
-			next->_next = next;
+			delete cur;
+			//cur = nullptr;
+			prev->_next = next;
 			next->_prev = prev;
 			return iterator(next);
 		}
@@ -169,10 +177,81 @@ namespace sx
 			prev->_next = _head;
 			_head->_prev = prev;
 		}
+		bool empty()
+		{
+			return _head == _head->_next;
+		}
+		T& front()
+		{
+			if (!empty)
+				return _head->_next->_data;
+		}
+		T& back()
+		{
+			if (!empty())
+				return _head->_prev->_data;
+		}
+		void swap(list<T>& l)
+		{
+			::swap(_head, l._head);
+		}
+		void print()
+		{
+			for (auto e : *this)
+			{
+				cout << e << " ";
+			}
+			cout << endl;
+		}
+		list<T>& operator=(list<T> l)
+		{
+			swap(l);
+			return *this;
+		}
+		void clear()
+		{
+			iterator it = begin();
+			while (it != end())
+			{
+				it = erase(it);
+			}
+			//iterator tmp = nullptr;
+			//while (it != end())
+			//{
+			//	tmp = it;
+			//	++it;
+			//	erase(tmp);
+			//}
+		}
 	private:
 		node* _head;
 
 	};
+}
+void test5()
+{
+
+	
+}
+void test4()
+{
+	sx::list<int> l1;
+	for (int i = 0; i < 10; i++)
+	{
+		l1.push_back(i);
+	}
+	sx::list<int> l2;
+	l2.push_back(100);
+	l1.print();
+	l2.print();
+	l2 = l1;
+	l1.erase(++l1.begin());
+	//l2.clear();
+	l1.print();
+	l2.print();
+	//cout << l1.back();
+	//for (auto e : l1)
+		//cout << e;
 }
 void test3()
 {
@@ -224,7 +303,13 @@ void test1()
 int main()
 {
 
-	test3();
+	test5();
+	//int* t1 = (int*)malloc(sizeof(int));
+	//int* t2 = (int*)malloc(sizeof(int));
+	//delete(t1);
+	//delete t2;
+	//test4();
+	//test3();
 	//test1();
 	//test2();
 	return 0;
