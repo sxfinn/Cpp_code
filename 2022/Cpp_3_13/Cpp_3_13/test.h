@@ -1,9 +1,9 @@
-//#include<stdio.h>
-//#include<stdlib.h>
-//#include<assert.h>
-//#include<stdbool.h>
-//#include<iostream>
-//
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+#include<stdbool.h>
+#include<iostream>
+
 //using namespace std;
 //template<class T>
 //T add(T a, T b);
