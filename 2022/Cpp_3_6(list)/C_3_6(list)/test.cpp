@@ -230,8 +230,11 @@ namespace sx
 }
 void test5()
 {
-
-	
+	sx::list<int> l1;
+	sx::list<int>l2;
+	l1.push_back(1);
+	l2.push_back(2);
+	l1.swap(l2);
 }
 void test4()
 {
