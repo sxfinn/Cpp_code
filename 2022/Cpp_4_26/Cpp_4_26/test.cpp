@@ -4,6 +4,13 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+
+int main()
+{
+
+	return 0;
+}
+
 //int Add(int a, int b)
 //{
 //	cout << "int Add(int a, int b)" << endl;
@@ -29,25 +36,25 @@ using std::cin;
 //}
 
 //int a = 1;
-int a = 1;
-
-namespace sx
-{
-	int a;
-	void swap(int& a, int& b)
-	{
-		int tmp = a;
-		a = b;
-		b = tmp;
-	}
-}
-using sx::a;
-//using namespace sx;
-int main()
-{
-	cout << ::a << endl;
-	return 0;
-}
+//int a = 1;
+//
+//namespace sx
+//{
+//	int a;
+//	void swap(int& a, int& b)
+//	{
+//		int tmp = a;
+//		a = b;
+//		b = tmp;
+//	}
+//}
+//
+////using namespace sx;
+//int main()
+//{
+//	cout << ::a << endl;
+//	return 0;
+//}
 
 //void testfunc(int t = 10)
 //{
