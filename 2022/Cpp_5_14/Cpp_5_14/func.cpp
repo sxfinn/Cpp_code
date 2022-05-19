@@ -1,9 +1,9 @@
 //#include"test.h"
 //void f(int i)
 //{
+//	cout << "func" << endl;
 //	if (i > 10)
 //		return;
-//	cout << "func" << endl;
 //	f(i + 1);
 //}
 //
