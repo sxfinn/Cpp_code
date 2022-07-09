@@ -1,0 +1,5 @@
+﻿  new.c
+  test.cpp
+E:\GitHub\Cpp_code\2022\Cpp_2_28\Cpp_2_28\test.cpp(35,8): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+test.obj : error LNK2005: main 已经在 new.obj 中定义
+E:\GitHub\Cpp_code\2022\Cpp_2_28\x64\Debug\Cpp_2_28.exe : fatal error LNK1169: 找到一个或多个多重定义的符号

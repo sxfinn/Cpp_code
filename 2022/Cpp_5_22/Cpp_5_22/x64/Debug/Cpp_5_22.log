@@ -1,0 +1,7 @@
+﻿  date.cpp
+C:\Github\Cpp_code\2022\Cpp_5_22\Cpp_5_22\date.cpp(47,12): error C2039: "test": 不是 "Date" 的成员
+C:\Github\Cpp_code\2022\Cpp_5_22\Cpp_5_22\date.h(17): message : 参见“Date”的声明
+  test.cpp
+C:\Github\Cpp_code\2022\Cpp_5_22\Cpp_5_22\test.cpp(513,1): error C2129: 静态函数“void test(void)”已声明但未定义
+C:\Github\Cpp_code\2022\Cpp_5_22\Cpp_5_22\date.h(157): message : 参见“test”的声明
+  正在生成代码...
